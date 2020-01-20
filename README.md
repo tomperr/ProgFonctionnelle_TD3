@@ -2,9 +2,9 @@
 
 ## [**correction TD2**](https://github.com/poussard/ProgFonctionnelle_TD2/blob/master/correction.md)
 
-Le but de ce TD est d'implémenter des méthodes 
-* Une qui calcule les valeurs du triangle de Pascal. 
-* une autre qui vérifie l'équilibrage des parenthèses dans une chaîne de caractères.
+Le but de ce TD est d'implémenter des méthodes comme :
+* Calcule les valeurs du triangle de Pascal. 
+* Vérifie l'équilibrage des parenthèses dans une chaîne de caractères.
 
 ## Installation
 * Télécharger le [**ZIP**](https://github.com/poussard/ProgFonctionnelle_TD3/archive/master.zip) ou cloner le projet avec la commande  git clone https://github.com/poussard/ProgFonctionnelle_TD3.git
@@ -28,7 +28,25 @@ Le but de ce TD est d'implémenter des méthodes
     |  |  |  |- PalindromeSuite.scala  // Tests palindrome
     |  |  |  |- ChangeSuite.scala      // Tests change
     |  |  |  |- AntSuite.scala         // Tests ant
+    |  |  |  |- PascalSuite.scala      // Tests Pascal
+    |  |  |  |- PgcdSuite.scala        // Tests Pgcd
 
+## Exercices: Triangle de Pascal
+Le motif de chiffres suivante est appelée le triangle de Pascal.
+```
+1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1
+...
+```
+Les numéros sur le bord du triangle sont tous `1`, et chaque nombre à l'intérieur du triangle est la somme des deux nombres au-dessus. Écrire une fonction qui calcule les éléments du triangle de Pascal au moyen d'un processus récursif.
+
+Faites cet exercice en mettant en œuvre la fonction pascal dans Main.scala, qui prend une colonne c et une rangée r, en partant de 0 et renvoie le nombre à cet endroit dans le triangle. Par exemple, `coefBinomial (0,2) = 1`, `coefBinomial (1,2) = 2` et `coefBinomial (1,3) = 3`.
+```scala
+def coefBinomial (col: Int, ligne: Int): int
+```
 
 ## Exercice: Parenthèses Balancing
 Écrire une fonction récursive qui vérifie l'équilibrage des parenthèses dans une chaîne, que nous représentons comme une `List[Char]` pas une `String`. Par exemple, la fonction doit retourner `True` pour les chaînes suivantes:

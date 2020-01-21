@@ -52,12 +52,18 @@ object Main {
       // one iteration
       def once(_etape: List[Int], previous: Int, count: Int) : List[Int] = {
         _etape match {
-          case Nil => Nil
+          case Nil => count::previous::Nil
           case elem::reste if elem == previous => once(reste, elem, count+1) 
-          case elem::reste if elem != previous => 
-            count::previous::once(reste, elem, 1)
+          case elem::reste if elem != previous => count::previous::once(reste, elem, 1)
         }
       }
+      
+      (etape, nombreIteration) match {
+        case (Nil, _) => throw new IllegalArgumentException("Liste vide") 
+        case (_, _) if nombreIteration <= 0 => etape
+        case (elem::reste, _) if nombreIteration > 0 => ant(once(reste, elem, 1), nombreIteration-1)
+      }
+      
     }
 
     /**
@@ -84,7 +90,28 @@ object Main {
      * Écrire une fonction booléenne et récursive qui teste si une chaîne de caractères donnée  est  une  anagramme  d'une
      * autre  chaîne  de  caractères  donnée.  Par  exemple : 'algorithme' est une anagramme de 'logarithme'
      */
-    def isAnagramme(chars1: List[Char], chars2: List[Char]): Boolean = ???
+    def isAnagramme(chars1: List[Char], chars2: List[Char]): Boolean = {
+      def count(needle: Char, myList: List[Char]): Long = {
+        (needle, myList) match {
+          case (needle, Nil) => 0
+          case (needle, elem::reste) if elem == needle => 1 + count(needle, reste)
+          case (needle, elem::reste) if elem != needle => count(needle, reste)
+        }
+      }
+      
+      def _isAnagramme(current: List[Char], chars1: List[Char], chars2: List[Char]): Boolean = {
+        (current, chars2) match {
+          case (Nil, Nil) => true
+          case (elem::Nil, _) if count(elem, chars2) == count(elem, chars1) => true
+          case (elem::Nil, _) if count(elem, chars2) != count(elem, chars1) => false
+          case (elem::reste, _) if count(elem, chars2) == count(elem, chars1) => _isAnagramme(reste, chars1, chars2)
+          case (elem::reste, _) if count(elem, chars2) != count(elem, chars1) => false         
+        }
+      }
+      
+      _isAnagramme(chars1, chars1, chars2)
+      
+    }
 
     /**
      * Exercise 6

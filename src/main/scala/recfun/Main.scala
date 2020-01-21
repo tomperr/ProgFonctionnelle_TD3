@@ -117,7 +117,38 @@ object Main {
      * Exercise 6
      * Écrire une fonction récursive qui calcule le pgcd de deux entiers naturels a et b par la méthode d'Euclide
      */
-    def pgcd(a: Int, b: Int): Int = ???
+    def pgcd(a: Int, b: Int): Int = { // j'avoue celle l� elle est crade
+      def getDivisors(nb: Int, divisor: Int): List[Int] = {
+        (nb, divisor, nb % divisor) match {
+          case (_, _, _) if nb == divisor-1 => Nil
+          case (_,_,_) if nb % divisor == 0 => divisor::getDivisors(nb, divisor+1)
+          case (_,_,_) => getDivisors(nb, divisor+1)
+        }
+      }
+      def intersection(listA: List[Int], listB: List[Int]): List[Int] = {
+        (listA, listB) match {
+          case (Nil, Nil) | (Nil, _) | (_, Nil) => Nil
+          case (elemA::resteA, _) if listB.contains(elemA) => elemA::intersection(resteA, listB)
+          case (elemA::resteA, _) if !listB.contains(elemA) => intersection(resteA, listB)
+        }
+      }
+      def max(myList: List[Int]): Int = {
+        def bigger(nb1: Int, nb2: Int) : Int = {
+          if (nb1 > nb2) {
+            nb1
+          } else {
+            nb2
+          }
+        }
+        myList match {
+          case Nil => throw new IllegalArgumentException("Liste vide")
+          case elem::Nil => elem 
+          case elem::reste => bigger(elem, max(reste))
+        }
+      }
+      
+      max(intersection(getDivisors(a, 1), getDivisors(b, 1)))
+    }
 
     /**
      * Exercise 7
@@ -126,6 +157,35 @@ object Main {
      * Par exemple : change (List(5, 10, 20, 50, 100, 200, 500),1790 ) = 1602321
      */
     
-    def nombreDeChange(monnaies: List[Int], montant: Int): Int = ???
+    def nombreDeChange(monnaies: List[Int], montant: Int): Int = {
+      def emptyBefore(myList: List[Int], index: Int) : List[Int] = {
+        
+      }
+      
+      def biggest(myList: List[Int]) : Int = {
+        def _biggest(myList: List[Int], indexMax: Int) : Int = {
+          (myList(current), myList.size) match {
+            case (_, 
+          }
+          if myList(current) != 0 && current > indexMax {
+            
+          } else {
+            
+          }
+        }
+        
+        _biggest(myList, 0);
+      }
+      
+      def next(monnaies: List[Int], previous: List[Int]) : List[Int] = {
+      
+      }
+      
+      def createEmptyList(size: Int) : List[Int] = {
+         List.fill(size)(0)
+      }
+      
+      next(monnaies, Nil)
+    }
 
 }

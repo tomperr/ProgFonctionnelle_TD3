@@ -158,34 +158,21 @@ object Main {
      */
     
     def nombreDeChange(monnaies: List[Int], montant: Int): Int = {
-      def emptyBefore(myList: List[Int], index: Int) : List[Int] = {
+      def changeAux(monnaies: List[Int], usage: List[Int], montant: Int) : Int = {
         
       }
       
-      def biggest(myList: List[Int]) : Int = {
-        def _biggest(myList: List[Int], indexMax: Int) : Int = {
-          (myList(current), myList.size) match {
-            case (_, 
-          }
-          if myList(current) != 0 && current > indexMax {
-            
-          } else {
-            
-          }
+      def createEmptyList(size: Int): List[Int] = {
+        List.fill(size)(0)
+      }
+      
+      def getFirst(monnaies: List[Int], usage: List[Int], montant: Int) : List[Int] = {
+        (monnaies, usage) match {
+          // case (Nil,Nil) => 
         }
-        
-        _biggest(myList, 0);
       }
       
-      def next(monnaies: List[Int], previous: List[Int]) : List[Int] = {
-      
-      }
-      
-      def createEmptyList(size: Int) : List[Int] = {
-         List.fill(size)(0)
-      }
-      
-      next(monnaies, Nil)
+      changeAux(monnaies, createEmptyList(monnaies.size), montant)
     }
 
 }
